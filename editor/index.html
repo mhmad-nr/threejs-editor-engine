@@ -253,13 +253,23 @@
 				try {
 
 					navigator.serviceWorker.register( 'sw.js' );
-					navigator.serviceWorker.register( '../service/src_web_service_worker_ts.engine-worker.js' );
 				} catch ( error ) {
-
+					console.log(error);
 				}
 
 			}
 
+			// Engine worker
+			const interval = setInterval(() => {
+
+				if (window.engineWorker == null) return;
+
+				console.log("[App] Loaded main worker!");
+				window.engineWorker.init();
+				clearInterval(interval);
+			});
+
+			console.log("[App] Loaded main script!")
 		</script>
 	</body>
 </html>
